@@ -1,16 +1,26 @@
 package model;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Activity {
+
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(nullable = false)
     private String navn;
     private int pris;
+
+    @Column(length = 1000)
     private String beskrivelse;
+
     private String aldersgrænse;
     private int varighed;
     private int kapacitet;
 
-    public Activity(int id, String navn, int pris, String beskrivelse, String aldersgrænse, int varighed, int kapacitet){
-        this.id = id;
+    public Activity(String navn, int pris, String beskrivelse, String aldersgrænse, int varighed, int kapacitet){
         this.navn = navn;
         this.pris = pris;
         this.beskrivelse = beskrivelse;
