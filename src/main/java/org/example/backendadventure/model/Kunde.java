@@ -1,4 +1,4 @@
-package model;
+package org.example.backendadventure.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

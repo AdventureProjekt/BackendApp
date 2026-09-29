@@ -1,4 +1,4 @@
-package model;
+package org.example.backendadventure.model;
 
 import jakarta.persistence.*;
 
@@ -16,11 +16,11 @@ public class Activity {
     @Column(length = 1000)
     private String beskrivelse;
 
-    private String aldersgrænse;
+    private int aldersgrænse;
     private int varighed;
     private int kapacitet;
 
-    public Activity(String navn, int pris, String beskrivelse, String aldersgrænse, int varighed, int kapacitet){
+    public Activity(String navn, int pris, String beskrivelse, int aldersgrænse, int varighed, int kapacitet){
         this.navn = navn;
         this.pris = pris;
         this.beskrivelse = beskrivelse;
@@ -52,7 +52,7 @@ public class Activity {
         return varighed;
     }
 
-    public String getAldersgrænse() {
+    public int getAldersgrænse() {
         return aldersgrænse;
     }
 
@@ -76,7 +76,7 @@ public class Activity {
         this.beskrivelse = beskrivelse;
     }
 
-    public void setAldersgrænse(String aldersgrænse) {
+    public void setAldersgrænse(int aldersgrænse) {
         this.aldersgrænse = aldersgrænse;
     }
 
