@@ -1,5 +1,5 @@
 package org.example.backendadventure.repos;
 import org.example.backendadventure.model.Kunde;
 import org.springframework.data.jpa.repository.JpaRepository;
-public interface KundeRepository extends JpaRepository<Kunde, Integer> {
+public interface KundeRepo extends JpaRepository<Kunde, Integer> {
 }
