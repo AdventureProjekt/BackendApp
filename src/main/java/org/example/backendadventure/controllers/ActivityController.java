@@ -4,6 +4,7 @@ import org.example.backendadventure.model.Activity;
 import org.example.backendadventure.services.ActivityService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,8 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/activities")
 public class ActivityController {
+
     private final ActivityService activityService;
 
     public ActivityController(ActivityService activityService) {
@@ -32,9 +35,11 @@ public class ActivityController {
     @GetMapping("/{id}")
     public ResponseEntity<Activity> findById(@PathVariable int id) {
         Activity activity = activityService.findById(id);
+
         if (activity == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+
         return new ResponseEntity<>(activity, HttpStatus.OK);
     }
 
@@ -49,13 +54,19 @@ public class ActivityController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> opdater(@PathVariable int id, @RequestBody Activity activity) {
+    public ResponseEntity<Object> opdater(
+            @PathVariable int id,
+            @RequestBody Activity activity) {
+
         try {
             Activity opdateret = activityService.opdater(id, activity);
+
             if (opdateret == null) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
+
             return new ResponseEntity<>(opdateret, HttpStatus.OK);
+
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
@@ -64,9 +75,11 @@ public class ActivityController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable int id) {
         boolean slettet = activityService.deleteById(id);
+
         if (!slettet) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
