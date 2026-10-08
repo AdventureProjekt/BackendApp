@@ -1,0 +1,21 @@
+### Hent alle aktiviteter
+GET http://localhost:8080/api/activities
+
+### Opret aktivitet
+POST http://localhost:8080/api/activities
+Content-Type: application/json
+
+{
+  "navn": "Go-kart",
+  "pris": 250,
+  "beskrivelse": "Go-kart aktivitet for Adventure",
+  "aldersgrænse": 12,
+  "varighed": 30,
+  "kapacitet": 10
+}
+
+### Hent alle aktiviteter igen
+GET http://localhost:8080/api/activities
+
+### Slet aktivitet
+DELETE http://localhost:8080/api/activities/1
