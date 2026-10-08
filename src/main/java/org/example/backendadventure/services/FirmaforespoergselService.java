@@ -8,8 +8,9 @@ import org.example.backendadventure.model.Status;
 import org.example.backendadventure.model.TidsValg;
 import org.example.backendadventure.repos.ActivityRepo;
 import org.example.backendadventure.repos.FirmaforespoergselRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import jakarta.transaction.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -21,15 +22,14 @@ public class FirmaforespoergselService {
     // Antagelse: alle deltagere i et firmaarrangement er voksne
     private static final int FIRMA_MIN_ALDER = 18;
 
-    private final FirmaforespoergselRepo forespoergselRepo;
-    private final ActivityRepo activityRepo;
-    private final BookingService bookingService;
+    @Autowired
+    FirmaforespoergselRepo forespoergselRepo;
 
-    public FirmaforespoergselService(FirmaforespoergselRepo forespoergselRepo, ActivityRepo activityRepo, BookingService bookingService) {
-        this.forespoergselRepo = forespoergselRepo;
-        this.activityRepo = activityRepo;
-        this.bookingService = bookingService;
-    }
+    @Autowired
+    ActivityRepo activityRepo;
+
+    @Autowired
+    BookingService bookingService;
 
     // US5: alle forespørgsler, eller kun dem med en bestemt status
     public List<Firmaforespoergsel> findAll(Status status) {

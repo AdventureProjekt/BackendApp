@@ -7,6 +7,7 @@ import org.example.backendadventure.model.LedigTid;
 import org.example.backendadventure.repos.ActivityRepo;
 import org.example.backendadventure.repos.BookingRepo;
 import org.example.backendadventure.repos.KundeRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -16,16 +17,14 @@ import java.util.List;
 
 @Service
 public class BookingService {
-    // Hver aktivitet har sine egne åbningstider (se Activity). Starttiderne følger aktivitetens varighed.
-    private final BookingRepo bookingRepo;
-    private final ActivityRepo activityRepo;
-    private final KundeRepo kundeRepo;
+    @Autowired
+    BookingRepo bookingRepo;
 
-    public BookingService(BookingRepo bookingRepo, ActivityRepo activityRepo, KundeRepo KundeRepo) {
-        this.bookingRepo = bookingRepo;
-        this.activityRepo = activityRepo;
-        this.kundeRepo = KundeRepo;
-    }
+    @Autowired
+    ActivityRepo activityRepo;
+
+    @Autowired
+    KundeRepo kundeRepo;
 
     public List<Booking> findAll() {
         return bookingRepo.findAll();

@@ -5,6 +5,8 @@ import org.example.backendadventure.model.Booking;
 import org.example.backendadventure.repos.ActivityRepo;
 import org.example.backendadventure.repos.BookingRepo;
 import org.example.backendadventure.repos.FirmaforespoergselRepo;
+import org.example.backendadventure.repos.UdstyrRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -12,15 +14,17 @@ import java.util.List;
 
 @Service
 public class ActivityService {
-    private final ActivityRepo activityRepo;
-    private final BookingRepo bookingRepo;
-    private final FirmaforespoergselRepo forespoergselRepo;
+    @Autowired
+    ActivityRepo activityRepo;
 
-    public ActivityService(ActivityRepo activityRepo, BookingRepo bookingRepo, FirmaforespoergselRepo forespoergselRepo) {
-        this.activityRepo = activityRepo;
-        this.bookingRepo = bookingRepo;
-        this.forespoergselRepo = forespoergselRepo;
-    }
+    @Autowired
+    BookingRepo bookingRepo;
+
+    @Autowired
+    FirmaforespoergselRepo forespoergselRepo;
+
+    @Autowired
+    UdstyrRepo udstyrRepo;
 
     public List<Activity> findAll() {
         return activityRepo.findAll();
@@ -87,6 +91,8 @@ public class ActivityService {
         if (bookingRepo.existsByActivityId(id) || forespoergselRepo.existsByAktiviteterId(id)) {
             throw new IllegalArgumentException("Aktiviteten har bookinger eller forespørgsler og kan ikke slettes");
         }
+        // Aktivitetens udstyr slettes sammen med aktiviteten
+        udstyrRepo.deleteAll(udstyrRepo.findByActivityId(id));
         activityRepo.deleteById(id);
         return true;
     }

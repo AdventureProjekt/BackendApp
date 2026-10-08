@@ -8,6 +8,7 @@ import org.example.backendadventure.repos.ActivityRepo;
 import org.example.backendadventure.repos.BookingRepo;
 import org.example.backendadventure.repos.FirmaforespoergselRepo;
 import org.example.backendadventure.repos.KundeRepo;
+import org.example.backendadventure.repos.UdstyrRepo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,9 @@ class FirmaforespoergselServiceTest {
     @Autowired
     private ActivityRepo activityRepo;
 
+    @Autowired
+    private UdstyrRepo udstyrRepo;
+
     private Activity gokart;
     private Activity paintball;
 
@@ -45,6 +49,7 @@ class FirmaforespoergselServiceTest {
         bookingRepo.deleteAll();
         forespoergselRepo.deleteAll();
         kundeRepo.deleteAll();
+        udstyrRepo.deleteAll();
         activityRepo.deleteAll();
         gokart = activityRepo.save(new Activity("Go-kart", 199, "Kør på banen", 12, 30, 20));
         paintball = activityRepo.save(new Activity("Paintball", 250, "Skyd med maling", 14, 60, 20));
