@@ -64,11 +64,15 @@ public class ActivityController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable int id) {
-        boolean slettet = activityService.deleteById(id);
-        if (!slettet) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public ResponseEntity<Object> deleteById(@PathVariable int id) {
+        try {
+            boolean slettet = activityService.deleteById(id);
+            if (!slettet) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

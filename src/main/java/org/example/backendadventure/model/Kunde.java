@@ -14,12 +14,12 @@ public class Kunde {
 
     private String navn;
     private String mail;
-    private int nummer;
+    private String tlfnr;
 
-    public Kunde (String navn, String mail, int nummer){
+    public Kunde (String navn, String mail, String tlfnr){
         this.navn = navn;
         this.mail = mail;
-        this.nummer = nummer;
+        this.tlfnr = tlfnr;
     }
 
     public Kunde(){
@@ -33,8 +33,8 @@ public class Kunde {
         return id;
     }
 
-    public int getNummer() {
-        return nummer;
+    public String getTlfnr() {
+        return tlfnr;
     }
 
     public String getMail() {
@@ -53,8 +53,8 @@ public class Kunde {
         this.mail = mail;
     }
 
-    public void setNummer(int nummer) {
-        this.nummer = nummer;
+    public void setTlfnr(String tlfnr) {
+        this.tlfnr = tlfnr;
     }
 
 }

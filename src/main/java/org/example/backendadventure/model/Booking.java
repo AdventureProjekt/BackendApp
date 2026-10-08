@@ -21,11 +21,23 @@ public class Booking {
     private LocalDate dato;
     private LocalTime tid;
     private int antalPersoner;
+    private int minAlder;
 
-    public Booking( LocalDate dato, LocalTime tid, int antalPersoner){
+    public int getMinAlder() {
+        return minAlder;
+    }
+
+    public void setMinAlder(int minAlder) {
+        this.minAlder = minAlder;
+    }
+
+
+
+    public Booking( LocalDate dato, LocalTime tid, int antalPersoner,  int minAlder){
         this.antalPersoner = antalPersoner;
         this.dato = dato;
         this.tid = tid;
+        this.minAlder = minAlder;
     }
 
     public Booking(){}
